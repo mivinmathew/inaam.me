@@ -23,13 +23,17 @@ const Navbar = () => {
     >
       <div 
         className={cn(
-          "max-w-5xl w-full mx-auto rounded-full px-6 py-3 transition-all duration-300",
+          "max-w-5xl w-full mx-auto rounded-full px-6 py-3 transition-all duration-300 border relative",
           scrolled 
-            ? "bg-white/80 backdrop-blur-md shadow-lg" 
-            : "bg-transparent"
+            ? "bg-white/80 backdrop-blur-md shadow-lg border-gray-200" 
+            : "bg-black/75 backdrop-blur-md border-white/10",
+          "apple-menu-glow overflow-hidden"
         )}
       >
-        <div className="flex items-center justify-between">
+        {/* Animated subtle gradient border effect */}
+        <div className="absolute inset-0 z-0 apple-menu-border-animation rounded-full"></div>
+        
+        <div className="flex items-center justify-between relative z-10">
           <a href="/" className="flex items-center">
             <img 
               src="/lovable-uploads/19489af6-3903-4757-8ef4-954d876c449e.png" 
@@ -42,7 +46,12 @@ const Navbar = () => {
               <li>
                 <a 
                   href="#waitlist" 
-                  className="text-black hover:text-gray-600 transition-colors font-inter text-sm font-medium"
+                  className={cn(
+                    "transition-colors font-inter text-sm font-medium",
+                    scrolled 
+                      ? "text-black hover:text-gray-600" 
+                      : "text-white hover:text-gray-200"
+                  )}
                 >
                   Join Waitlist
                 </a>

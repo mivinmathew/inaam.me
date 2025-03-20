@@ -35,11 +35,17 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <main className="flex-1 pt-32 pb-20 px-6 md:px-10">
+      <main className="flex-1 pt-32 pb-20 px-6 md:px-10 relative">
         <div className="max-w-7xl mx-auto">
-          {/* Hero Section */}
-          <section className="py-16 md:py-24">
-            <div className="text-center space-y-8 max-w-3xl mx-auto">
+          {/* Hero Section with Chart Animation behind it */}
+          <section className="py-16 md:py-24 relative">
+            {/* Chart Animation positioned as background */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <ChartAnimation />
+            </div>
+            
+            {/* Hero content above the animation */}
+            <div className="text-center space-y-8 max-w-3xl mx-auto relative z-10">
               <div className="space-y-5">
                 <span className="inline-block text-sm font-medium uppercase tracking-wide bg-black text-white px-3 py-1 rounded-full animate-fade-in appear-first">
                   Coming Soon
@@ -55,13 +61,6 @@ const Index = () => {
               <div className="animate-fade-in appear-fourth" id="waitlist">
                 <WaitlistForm />
               </div>
-            </div>
-          </section>
-          
-          {/* Chart Animation Section */}
-          <section className="py-8 md:py-16">
-            <div className="max-w-4xl mx-auto">
-              <ChartAnimation />
             </div>
           </section>
           

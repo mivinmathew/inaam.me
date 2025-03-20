@@ -46,6 +46,12 @@
     --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 0 0% 91%;
     --sidebar-ring: 0 0% 60%;
+
+    /* Apple-style menu variables */
+    --menu-gradient-start: rgba(40, 40, 40, 0.9);
+    --menu-gradient-end: rgba(20, 20, 20, 0.9);
+    --menu-border-glow: rgba(255, 255, 255, 0.1);
+    --menu-border-shadow: rgba(0, 0, 0, 0.2);
   }
 
   * {
@@ -61,6 +67,7 @@
   }
 }
 
+/* Navbar & Glass effects */
 .navbar-blur {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -84,6 +91,40 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
+/* Apple-style menu effects */
+.apple-menu-glow {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.apple-menu-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.apple-menu-border-animation {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 25%, 
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: gradient-shift 3s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* Animation timing classes */
 .appear-first {
   animation-delay: 100ms;
 }
@@ -99,3 +140,5 @@
 .appear-fourth {
   animation-delay: 700ms;
 }
+
+/* Update the Index.tsx file to reposition the chart animation */
