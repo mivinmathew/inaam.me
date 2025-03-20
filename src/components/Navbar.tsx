@@ -19,31 +19,37 @@ const Navbar = () => {
 
   return (
     <header 
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out py-4 px-6 md:px-10",
-        scrolled ? "navbar-blur" : "bg-transparent"
-      )}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out py-4 px-6 md:px-10 flex justify-center"
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="/" className="flex items-center">
-          <img 
-            src="/lovable-uploads/7e1e2f8d-ac52-498a-b882-2469d7589523.png" 
-            alt="inaam" 
-            className="h-8 md:h-10"
-          />
-        </a>
-        <nav className="hidden md:block">
-          <ul className="flex space-x-8">
-            <li>
-              <a 
-                href="/" 
-                className="text-black hover:text-gray-600 transition-colors font-inter text-sm font-medium"
-              >
-                Home
-              </a>
-            </li>
-          </ul>
-        </nav>
+      <div 
+        className={cn(
+          "max-w-5xl w-full mx-auto rounded-full px-6 py-3 transition-all duration-300",
+          scrolled 
+            ? "bg-white/80 backdrop-blur-md shadow-lg" 
+            : "bg-transparent"
+        )}
+      >
+        <div className="flex items-center justify-between">
+          <a href="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/19489af6-3903-4757-8ef4-954d876c449e.png" 
+              alt="inaam" 
+              className="h-8 md:h-10"
+            />
+          </a>
+          <nav className="hidden md:block">
+            <ul className="flex space-x-8">
+              <li>
+                <a 
+                  href="/" 
+                  className="text-black hover:text-gray-600 transition-colors font-inter text-sm font-medium"
+                >
+                  Home
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
   );

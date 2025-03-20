@@ -126,7 +126,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <img 
-                src="/lovable-uploads/7e1e2f8d-ac52-498a-b882-2469d7589523.png" 
+                src="/lovable-uploads/19489af6-3903-4757-8ef4-954d876c449e.png" 
                 alt="inaam" 
                 className="h-6"
               />
