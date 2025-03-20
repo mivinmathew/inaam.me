@@ -36,20 +36,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between relative z-10">
           <a href="/" className="flex items-center transition-opacity duration-300">
             <img 
-              src="/lovable-uploads/b1613b60-0c79-4aae-8f9a-dad10c5c3d1c.png" 
+              src="/lovable-uploads/0a23badb-d7a6-419a-89ce-8103e50caea0.png" 
               alt="inaam" 
-              className={cn(
-                "h-8 md:h-10 transition-opacity duration-300",
-                scrolled ? "opacity-0 absolute" : "opacity-100"
-              )}
-            />
-            <img 
-              src="/lovable-uploads/19489af6-3903-4757-8ef4-954d876c449e.png" 
-              alt="inaam" 
-              className={cn(
-                "h-8 md:h-10 transition-opacity duration-300",
-                scrolled ? "opacity-100" : "opacity-0 absolute"
-              )}
+              className="h-8 md:h-10 transition-all duration-300 ease-in-out"
+              style={{
+                filter: scrolled ? 'invert(0%)' : 'invert(100%)'
+              }}
             />
           </a>
           <nav className="hidden md:block">
@@ -57,9 +49,7 @@ const Navbar = () => {
               <li>
                 <a 
                   href="#waitlist" 
-                  className={cn(
-                    "transition-colors font-inter text-sm font-medium text-[#222222]"
-                  )}
+                  className="transition-colors font-inter text-sm font-medium text-[#222222]"
                 >
                   Join Waitlist
                 </a>

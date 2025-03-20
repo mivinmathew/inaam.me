@@ -68,7 +68,7 @@
   
   /* Page fade-in animation */
   #root {
-    animation: page-fade-in 0.8s ease-out;
+    animation: page-fade-in 1.2s cubic-bezier(0.22, 1, 0.36, 1);
   }
   
   @keyframes page-fade-in {
@@ -110,7 +110,7 @@
 /* Apple-style menu effects */
 .apple-menu-glow {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .apple-menu-glow:hover {
@@ -127,7 +127,7 @@
     rgba(255, 255, 255, 0.2) 100%
   );
   background-size: 200% 100%;
-  animation: gradient-shift 3s linear infinite;
+  animation: gradient-shift 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
   opacity: 0.6;
 }
 
@@ -143,16 +143,40 @@
 /* Animation timing classes */
 .appear-first {
   animation-delay: 100ms;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .appear-second {
   animation-delay: 300ms;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .appear-third {
   animation-delay: 500ms;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .appear-fourth {
   animation-delay: 700ms;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fade up animation for scroll animations */
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }

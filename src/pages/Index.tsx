@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import WaitlistForm from '@/components/WaitlistForm';
@@ -127,7 +126,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <img 
-                src="/lovable-uploads/b1613b60-0c79-4aae-8f9a-dad10c5c3d1c.png" 
+                src="/lovable-uploads/0a23badb-d7a6-419a-89ce-8103e50caea0.png" 
                 alt="inaam" 
                 className="h-6"
               />
