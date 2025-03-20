@@ -25,86 +25,148 @@ const ChartAnimation = () => {
     setCanvasDimensions();
     window.addEventListener('resize', setCanvasDimensions);
 
-    // Draw candlestick chart
-    const drawChart = () => {
+    // Define candlestick and leaf positions
+    const candlesticks = [
+      { x: 50, y: 150, width: 8, height: 40, color: '#000', growing: true, growthRate: 0.5, maxHeight: 40, wickHeight: 15 },
+      { x: 80, y: 120, width: 8, height: 0, color: '#fff', growing: false, growthRate: 0.6, maxHeight: 25, wickHeight: 12 },
+      { x: 110, y: 140, width: 8, height: 0, color: '#b3f08c', growing: false, growthRate: 0.7, maxHeight: 45, wickHeight: 18 },
+      { x: 140, y: 160, width: 8, height: 0, color: '#000', growing: false, growthRate: 0.5, maxHeight: 30, wickHeight: 10 },
+      { x: 170, y: 130, width: 8, height: 0, color: '#fff', growing: false, growthRate: 0.6, maxHeight: 35, wickHeight: 15 },
+      { x: 200, y: 150, width: 8, height: 0, color: '#b3f08c', growing: false, growthRate: 0.5, maxHeight: 50, wickHeight: 20 },
+    ];
+
+    // Define leaf shapes based on the uploaded image
+    const leaves = [
+      { x: 45, y: 90, scale: 0, maxScale: 1.0, growing: false, delay: 120, color: '#b3f08c', rotation: -0.2 },
+      { x: 110, y: 80, scale: 0, maxScale: 0.8, growing: false, delay: 180, color: '#b3f08c', rotation: 0.1 },
+      { x: 200, y: 85, scale: 0, maxScale: 1.2, growing: false, delay: 220, color: '#b3f08c', rotation: -0.1 },
+    ];
+
+    // Draw a leaf
+    const drawLeaf = (x: number, y: number, scale: number, color: string, rotation: number) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.scale(scale, scale);
+
+      // Draw the leaf shape similar to the reference image
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(10, -15, 30, -20, 40, -5);
+      ctx.bezierCurveTo(30, 10, 20, 15, 0, 15);
+      ctx.bezierCurveTo(-20, 15, -30, 10, -40, -5);
+      ctx.bezierCurveTo(-30, -20, -10, -15, 0, 0);
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      // Add a stem
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, 25);
+      ctx.strokeStyle = '#555';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Add vein detail
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, 5, 0, 10, 0, 15);
+      ctx.strokeStyle = '#75c32c';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.restore();
+    };
+
+    // Animation frame counter
+    let frameCount = 0;
+    
+    // Animation loop
+    const animate = () => {
+      frameCount++;
+      
+      // Clear canvas
       const width = canvas.width / window.devicePixelRatio;
       const height = canvas.height / window.devicePixelRatio;
-      
       ctx.clearRect(0, 0, width, height);
       
-      // Draw some candlesticks
-      const stickWidth = 10;
-      const gap = 20;
-      const startX = 50;
-      const centerY = height / 2;
-      
-      for (let i = 0; i < 10; i++) {
-        const x = startX + i * (stickWidth + gap);
-        const isUp = Math.random() > 0.5;
+      // Animate candlesticks first
+      candlesticks.forEach((stick, index) => {
+        // Start growing candlesticks in sequence
+        if (frameCount > index * 15 && !stick.growing) {
+          stick.growing = true;
+        }
         
-        const bodyHeight = 30 + Math.random() * 50;
-        const wickHeight = 20 + Math.random() * 30;
+        // Grow the candlestick
+        if (stick.growing && stick.height < stick.maxHeight) {
+          stick.height += stick.growthRate;
+          if (stick.height >= stick.maxHeight) {
+            stick.height = stick.maxHeight;
+            
+            // Once a candlestick is fully grown, allow its leaf to start growing
+            if (index < 3 && leaves[index]) {
+              setTimeout(() => {
+                leaves[index].growing = true;
+              }, leaves[index].delay);
+            }
+          }
+        }
         
-        // Draw the wick
+        // Draw candlestick wick
         ctx.beginPath();
-        ctx.moveTo(x + stickWidth / 2, centerY - bodyHeight / 2 - wickHeight);
-        ctx.lineTo(x + stickWidth / 2, centerY + bodyHeight / 2 + wickHeight);
-        ctx.strokeStyle = '#888';
+        ctx.moveTo(stick.x + stick.width / 2, stick.y - stick.wickHeight);
+        ctx.lineTo(stick.x + stick.width / 2, stick.y + stick.height + stick.wickHeight);
+        ctx.strokeStyle = '#555';
         ctx.lineWidth = 1;
         ctx.stroke();
         
-        // Draw the body
-        ctx.fillStyle = isUp ? '#b3f08c' : '#000';
-        ctx.fillRect(
-          x, 
-          centerY - bodyHeight / 2, 
-          stickWidth, 
-          bodyHeight
-        );
+        // Draw candlestick body
+        ctx.fillStyle = stick.color;
+        ctx.fillRect(stick.x, stick.y, stick.width, stick.height);
+        
+        // Add border to white candlesticks for visibility
+        if (stick.color === '#fff') {
+          ctx.strokeStyle = '#555';
+          ctx.lineWidth = 0.5;
+          ctx.strokeRect(stick.x, stick.y, stick.width, stick.height);
+        }
+      });
+      
+      // Animate leaves after candlesticks start appearing
+      leaves.forEach((leaf) => {
+        if (leaf.growing && leaf.scale < leaf.maxScale) {
+          leaf.scale += 0.01;
+          if (leaf.scale >= leaf.maxScale) {
+            leaf.scale = leaf.maxScale;
+          }
+        }
+        
+        if (leaf.scale > 0) {
+          drawLeaf(leaf.x, leaf.y, leaf.scale, leaf.color, leaf.rotation);
+        }
+      });
+      
+      // Reset animation when complete
+      if (frameCount > 400) {
+        frameCount = 0;
+        candlesticks.forEach(stick => {
+          stick.height = 0;
+          stick.growing = false;
+        });
+        leaves.forEach(leaf => {
+          leaf.scale = 0;
+          leaf.growing = false;
+        });
       }
       
-      // Draw some leaves (similar to the design in the image)
-      const leafPositions = [
-        { x: startX - 20, y: centerY - 80, scale: 1.5, rotation: -0.2 },
-        { x: startX + 3 * (stickWidth + gap), y: centerY - 100, scale: 1.2, rotation: 0.1 },
-        { x: startX + 7 * (stickWidth + gap), y: centerY - 90, scale: 1.3, rotation: -0.3 }
-      ];
-      
-      leafPositions.forEach(leaf => {
-        ctx.save();
-        ctx.translate(leaf.x, leaf.y);
-        ctx.rotate(leaf.rotation);
-        ctx.scale(leaf.scale, leaf.scale);
-        
-        // Draw a simple leaf
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(15, -15, 30, -5);
-        ctx.quadraticCurveTo(15, 15, 0, 30);
-        ctx.quadraticCurveTo(-15, 15, -30, -5);
-        ctx.quadraticCurveTo(-15, -15, 0, 0);
-        ctx.fillStyle = '#b3f08c';
-        ctx.fill();
-        
-        ctx.restore();
-      });
-    };
-
-    // Initial draw
-    drawChart();
-    
-    // Animation loop
-    let frameId: number;
-    const animate = () => {
-      drawChart();
-      frameId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     };
     
+    // Start animation
     animate();
     
     return () => {
       window.removeEventListener('resize', setCanvasDimensions);
-      cancelAnimationFrame(frameId);
     };
   }, []);
 

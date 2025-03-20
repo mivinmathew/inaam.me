@@ -41,10 +41,10 @@ const Navbar = () => {
             <ul className="flex space-x-8">
               <li>
                 <a 
-                  href="/" 
+                  href="#waitlist" 
                   className="text-black hover:text-gray-600 transition-colors font-inter text-sm font-medium"
                 >
-                  Home
+                  Join Waitlist
                 </a>
               </li>
             </ul>

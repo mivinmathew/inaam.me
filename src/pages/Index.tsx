@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import WaitlistForm from '@/components/WaitlistForm';
+import ChartAnimation from '@/components/ChartAnimation';
 
 const Index = () => {
   // This will help us implement the staggered animation effect
@@ -51,9 +52,16 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="animate-fade-in appear-fourth">
+              <div className="animate-fade-in appear-fourth" id="waitlist">
                 <WaitlistForm />
               </div>
+            </div>
+          </section>
+          
+          {/* Chart Animation Section */}
+          <section className="py-8 md:py-16">
+            <div className="max-w-4xl mx-auto">
+              <ChartAnimation />
             </div>
           </section>
           
@@ -70,7 +78,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-2xl font-bold">Simplified</h3>
                 <p className="text-gray-600">
-                  Investment made accessible for everyone, regardless of experience level.
+                  Investment made accessible for everyone, regardless of your experience level.
                 </p>
               </div>
               
