@@ -39,9 +39,6 @@ const Navbar = () => {
               src="/lovable-uploads/0a23badb-d7a6-419a-89ce-8103e50caea0.png" 
               alt="inaam" 
               className="h-8 md:h-10 transition-all duration-300 ease-in-out"
-              style={{
-                filter: scrolled ? 'none' : 'brightness(10)'
-              }}
             />
           </a>
           <nav className="hidden md:block">
