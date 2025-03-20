@@ -40,7 +40,7 @@ const Navbar = () => {
               alt="inaam" 
               className="h-8 md:h-10 transition-all duration-300 ease-in-out"
               style={{
-                filter: scrolled ? 'invert(0%)' : 'invert(100%)'
+                filter: scrolled ? 'none' : 'brightness(10)'
               }}
             />
           </a>
