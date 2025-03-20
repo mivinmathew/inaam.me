@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import WaitlistForm from '@/components/WaitlistForm';
-import ChartAnimation from '@/components/ChartAnimation';
 
 const Index = () => {
   // This will help us implement the staggered animation effect
@@ -37,14 +36,9 @@ const Index = () => {
       
       <main className="flex-1 pt-32 pb-20 px-6 md:px-10 relative">
         <div className="max-w-7xl mx-auto">
-          {/* Hero Section with Chart Animation behind it */}
+          {/* Hero Section */}
           <section className="py-16 md:py-24 relative">
-            {/* Chart Animation positioned as background */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <ChartAnimation />
-            </div>
-            
-            {/* Hero content above the animation */}
+            {/* Hero content */}
             <div className="text-center space-y-8 max-w-3xl mx-auto relative z-10">
               <div className="space-y-5">
                 <span className="inline-block text-sm font-medium uppercase tracking-wide bg-black text-white px-3 py-1 rounded-full animate-fade-in appear-first">
@@ -133,7 +127,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <img 
-                src="/lovable-uploads/19489af6-3903-4757-8ef4-954d876c449e.png" 
+                src="/lovable-uploads/b1613b60-0c79-4aae-8f9a-dad10c5c3d1c.png" 
                 alt="inaam" 
                 className="h-6"
               />

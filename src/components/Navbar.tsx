@@ -23,10 +23,10 @@ const Navbar = () => {
     >
       <div 
         className={cn(
-          "max-w-5xl w-full mx-auto rounded-full px-6 py-3 transition-all duration-300 border relative",
+          "max-w-3xl w-full mx-auto rounded-full px-6 py-3 transition-all duration-300 border relative",
           scrolled 
-            ? "bg-white/80 backdrop-blur-md shadow-lg border-gray-200" 
-            : "bg-black/75 backdrop-blur-md border-white/10",
+            ? "bg-white/90 backdrop-blur-md shadow-lg border-gray-200" 
+            : "bg-transparent backdrop-blur-sm border-white/20",
           "apple-menu-glow overflow-hidden"
         )}
       >
@@ -34,11 +34,22 @@ const Navbar = () => {
         <div className="absolute inset-0 z-0 apple-menu-border-animation rounded-full"></div>
         
         <div className="flex items-center justify-between relative z-10">
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-center transition-opacity duration-300">
+            <img 
+              src="/lovable-uploads/b1613b60-0c79-4aae-8f9a-dad10c5c3d1c.png" 
+              alt="inaam" 
+              className={cn(
+                "h-8 md:h-10 transition-opacity duration-300",
+                scrolled ? "opacity-0 absolute" : "opacity-100"
+              )}
+            />
             <img 
               src="/lovable-uploads/19489af6-3903-4757-8ef4-954d876c449e.png" 
               alt="inaam" 
-              className="h-8 md:h-10"
+              className={cn(
+                "h-8 md:h-10 transition-opacity duration-300",
+                scrolled ? "opacity-100" : "opacity-0 absolute"
+              )}
             />
           </a>
           <nav className="hidden md:block">
