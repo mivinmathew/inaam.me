@@ -58,10 +58,7 @@ const Navbar = () => {
                 <a 
                   href="#waitlist" 
                   className={cn(
-                    "transition-colors font-inter text-sm font-medium",
-                    scrolled 
-                      ? "text-black hover:text-gray-600" 
-                      : "text-white hover:text-gray-200"
+                    "transition-colors font-inter text-sm font-medium text-[#222222]"
                   )}
                 >
                   Join Waitlist

@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://use.typekit.net/xwd2qaf.css'); /* For Filson Soft (assuming it's available on Adobe Fonts) */
 
@@ -63,6 +64,22 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-filson font-bold tracking-tight;
+  }
+  
+  /* Page fade-in animation */
+  #root {
+    animation: page-fade-in 0.8s ease-out;
+  }
+  
+  @keyframes page-fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
