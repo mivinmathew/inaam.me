@@ -1,6 +1,7 @@
+
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import WaitlistForm from '@/components/WaitlistForm';
+import MailchimpForm from '@/components/MailchimpForm';
 
 const Index = () => {
   // This will help us implement the staggered animation effect
@@ -52,7 +53,7 @@ const Index = () => {
               </div>
               
               <div className="animate-fade-in appear-fourth" id="waitlist">
-                <WaitlistForm />
+                <MailchimpForm />
               </div>
             </div>
           </section>
@@ -114,7 +115,7 @@ const Index = () => {
                 Join our waitlist today and be notified when we launch.
               </p>
               <div className="animate-on-scroll opacity-0">
-                <WaitlistForm />
+                <MailchimpForm />
               </div>
             </div>
           </section>
