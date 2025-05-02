@@ -1,6 +1,16 @@
 
 import { useEffect, useState } from 'react';
 
+// Add type declaration for jQuery on the Window object
+declare global {
+  interface Window {
+    $: any;
+    jQuery: any;
+    fnames: any[];
+    ftypes: any[];
+  }
+}
+
 const MailchimpForm = () => {
   const [isFormReady, setIsFormReady] = useState(false);
 
@@ -26,26 +36,18 @@ const MailchimpForm = () => {
         console.log('Mailchimp script loaded successfully');
         
         try {
-          // @ts-ignore - using Mailchimp's global setup
+          // Using Mailchimp's global setup
           window.fnames = new Array();
-          // @ts-ignore
           window.ftypes = new Array();
-          // @ts-ignore
           window.fnames[0]='EMAIL';
-          // @ts-ignore
           window.ftypes[0]='email';
-          // @ts-ignore
           window.fnames[1]='FNAME';
-          // @ts-ignore
           window.ftypes[1]='text';
-          // @ts-ignore
           window.fnames[2]='LNAME';
-          // @ts-ignore
           window.ftypes[2]='text';
           
           // Initialize Mailchimp
           if (typeof window.$ !== 'undefined') {
-            // @ts-ignore
             window.$('#mc-embedded-subscribe-form').on('submit', function () {
               console.log('Form submitted');
             });
