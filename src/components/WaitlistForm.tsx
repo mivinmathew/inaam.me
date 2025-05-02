@@ -9,9 +9,9 @@ const WaitlistForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
+    // Only prevent default if validation fails
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      e.preventDefault();
       toast({
         title: "Invalid email",
         description: "Please enter a valid email address.",
@@ -22,18 +22,19 @@ const WaitlistForm = () => {
 
     setIsSubmitting(true);
     
-    // We'll let the form submit to Mailchimp naturally since we're using target="_blank"
-    // But we'll still show the toast to give immediate feedback
+    // Show success toast while allowing form to submit naturally
     toast({
       title: "Success!",
       description: "You've been added to our waitlist.",
     });
     
-    // Reset the form after a delay to allow the form to submit
+    // Reset the form state after a brief delay
     setTimeout(() => {
       setEmail('');
       setIsSubmitting(false);
     }, 500);
+    
+    // Let the form continue its natural submission to Mailchimp
   };
 
   return (
