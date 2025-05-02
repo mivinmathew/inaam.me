@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import SimpleMailchimpForm from '@/components/SimpleMailchimpForm';
+import TypeformEmbed from '@/components/TypeformEmbed';
 
 const Index = () => {
   // This will help us implement the staggered animation effect
@@ -53,7 +53,7 @@ const Index = () => {
               </div>
               
               <div className="animate-fade-in appear-fourth mt-6 opacity-100 !important" style={{opacity: 1}} id="waitlist">
-                <SimpleMailchimpForm />
+                <TypeformEmbed />
               </div>
             </div>
           </section>
@@ -115,7 +115,7 @@ const Index = () => {
                 Be notified when we launch.
               </p>
               <div className="animate-on-scroll opacity-0 mt-2" style={{opacity: 1}}>
-                <SimpleMailchimpForm />
+                <TypeformEmbed />
               </div>
             </div>
           </section>
