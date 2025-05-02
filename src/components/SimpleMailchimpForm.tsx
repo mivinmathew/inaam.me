@@ -16,13 +16,6 @@ const SimpleMailchimpForm = () => {
             border: 1px solid #eee;
           }
 
-          .inaam-form h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #111;
-          }
-
           .inaam-form label {
             display: block;
             margin-bottom: 0.25rem;
@@ -75,8 +68,6 @@ const SimpleMailchimpForm = () => {
         target="_blank" 
         noValidate
       >
-        <h2>Be the first to experience a new way of impact investing</h2>
-
         <label htmlFor="mce-EMAIL">Email Address</label>
         <input 
           type="email" 
