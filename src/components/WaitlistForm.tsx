@@ -22,22 +22,37 @@ const WaitlistForm = () => {
 
     setIsSubmitting(true);
     
-    // Simulate API call
+    // We'll let the form submit to Mailchimp naturally since we're using target="_blank"
+    // But we'll still show the toast to give immediate feedback
+    toast({
+      title: "Success!",
+      description: "You've been added to our waitlist.",
+    });
+    
+    // Reset the form after a delay to allow the form to submit
     setTimeout(() => {
-      toast({
-        title: "Success!",
-        description: "You've been added to our waitlist.",
-      });
       setEmail('');
       setIsSubmitting(false);
-    }, 1000);
+    }, 500);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 w-full max-w-md mx-auto">
+    <form 
+      onSubmit={handleSubmit} 
+      action="https://inaam.us5.list-manage.com/subscribe/post?u=1a0dcc7eaa98b4c0cce7e1381&id=d4145d893b&f_id=000542edf0" 
+      method="post"
+      target="_blank"
+      className="mt-8 w-full max-w-md mx-auto"
+    >
+      {/* Hidden field for bot protection */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
+        <input type="text" name="b_1a0dcc7eaa98b4c0cce7e1381_d4145d893b" tabIndex={-1} value="" />
+      </div>
+      
       <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:space-x-2">
         <Input
           type="email"
+          name="EMAIL" 
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
