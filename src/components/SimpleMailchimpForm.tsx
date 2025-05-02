@@ -82,7 +82,7 @@ const SimpleMailchimpForm = () => {
             type="text" 
             name="b_1a0dcc7eaa98b4c0cce7e1381_d4145d893b" 
             tabIndex={-1} 
-            value="" 
+            defaultValue="" 
           />
         </div>
 
