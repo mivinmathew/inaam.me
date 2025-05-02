@@ -52,7 +52,7 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="animate-fade-in appear-fourth mt-6" id="waitlist">
+              <div className="animate-fade-in appear-fourth mt-6 opacity-100 !important" style={{opacity: 1}} id="waitlist">
                 <MailchimpForm />
               </div>
             </div>
@@ -114,7 +114,7 @@ const Index = () => {
               <p className="text-gray-600 text-lg animate-on-scroll opacity-0">
                 Be notified when we launch.
               </p>
-              <div className="animate-on-scroll opacity-0 mt-2">
+              <div className="animate-on-scroll opacity-0 mt-2" style={{opacity: 1}}>
                 <MailchimpForm />
               </div>
             </div>

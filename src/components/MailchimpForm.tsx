@@ -1,44 +1,80 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const MailchimpForm = () => {
+  const [isFormReady, setIsFormReady] = useState(false);
+
   // Add Mailchimp script after component mounts
   useEffect(() => {
-    // Add the Mailchimp validation script
-    const script = document.createElement('script');
-    script.src = '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js';
-    script.async = true;
+    // First, add jQuery as Mailchimp's script depends on it
+    const jqueryScript = document.createElement('script');
+    jqueryScript.src = 'https://code.jquery.com/jquery-3.7.1.min.js';
+    jqueryScript.integrity = 'sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=';
+    jqueryScript.crossOrigin = 'anonymous';
+    jqueryScript.async = true;
     
-    // Add the validation function
-    script.onload = () => {
-      // @ts-ignore - using Mailchimp's global setup
-      window.fnames = new Array();
-      // @ts-ignore
-      window.ftypes = new Array();
-      // @ts-ignore
-      window.fnames[0]='EMAIL';
-      // @ts-ignore
-      window.ftypes[0]='email';
-      // @ts-ignore
-      window.fnames[1]='FNAME';
-      // @ts-ignore
-      window.ftypes[1]='text';
-      // @ts-ignore
-      window.fnames[2]='LNAME';
-      // @ts-ignore
-      window.ftypes[2]='text';
+    jqueryScript.onload = () => {
+      console.log('jQuery loaded successfully');
+      
+      // Once jQuery is loaded, add the Mailchimp validation script
+      const mailchimpScript = document.createElement('script');
+      mailchimpScript.src = '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js';
+      mailchimpScript.async = true;
+      
+      // Add the validation function
+      mailchimpScript.onload = () => {
+        console.log('Mailchimp script loaded successfully');
+        
+        try {
+          // @ts-ignore - using Mailchimp's global setup
+          window.fnames = new Array();
+          // @ts-ignore
+          window.ftypes = new Array();
+          // @ts-ignore
+          window.fnames[0]='EMAIL';
+          // @ts-ignore
+          window.ftypes[0]='email';
+          // @ts-ignore
+          window.fnames[1]='FNAME';
+          // @ts-ignore
+          window.ftypes[1]='text';
+          // @ts-ignore
+          window.fnames[2]='LNAME';
+          // @ts-ignore
+          window.ftypes[2]='text';
+          
+          // Initialize Mailchimp
+          if (typeof window.$ !== 'undefined') {
+            // @ts-ignore
+            window.$('#mc-embedded-subscribe-form').on('submit', function () {
+              console.log('Form submitted');
+            });
+          }
+          
+          setIsFormReady(true);
+        } catch (error) {
+          console.error('Error initializing Mailchimp form:', error);
+        }
+      };
+      
+      document.body.appendChild(mailchimpScript);
     };
     
-    document.body.appendChild(script);
+    document.body.appendChild(jqueryScript);
     
-    // Clean up the script when component unmounts
+    // Clean up the scripts when component unmounts
     return () => {
-      document.body.removeChild(script);
+      const scripts = document.querySelectorAll('script');
+      scripts.forEach(script => {
+        if (script.src.includes('mailchimp') || script.src.includes('jquery')) {
+          document.body.removeChild(script);
+        }
+      });
     };
   }, []);
   
   return (
-    <div className="mx-auto max-w-md w-full">
+    <div className={`mx-auto max-w-md w-full ${isFormReady ? 'opacity-100' : 'opacity-100'}`}>
       <div id="mc_embed_shell">
         <link 
           href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" 
