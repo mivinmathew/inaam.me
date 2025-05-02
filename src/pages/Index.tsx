@@ -39,7 +39,7 @@ const Index = () => {
           {/* Hero Section */}
           <section className="py-16 md:py-24 relative">
             {/* Hero content */}
-            <div className="text-center space-y-8 max-w-3xl mx-auto relative z-10">
+            <div className="text-center space-y-6 max-w-3xl mx-auto relative z-10">
               <div className="space-y-5">
                 <span className="inline-block text-sm font-medium uppercase tracking-wide bg-black text-white px-3 py-1 rounded-full animate-fade-in appear-first">
                   Coming Soon
@@ -52,7 +52,7 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="animate-fade-in appear-fourth" id="waitlist">
+              <div className="animate-fade-in appear-fourth mt-6" id="waitlist">
                 <MailchimpForm />
               </div>
             </div>
@@ -107,14 +107,14 @@ const Index = () => {
           
           {/* Call to Action */}
           <section className="py-16 md:py-24 text-center">
-            <div className="max-w-3xl mx-auto space-y-8">
+            <div className="max-w-3xl mx-auto space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold animate-on-scroll opacity-0">
-                Be the first to experience a new way of impact investing
+                Join our waitlist today
               </h2>
               <p className="text-gray-600 text-lg animate-on-scroll opacity-0">
-                Join our waitlist today and be notified when we launch.
+                Be notified when we launch.
               </p>
-              <div className="animate-on-scroll opacity-0">
+              <div className="animate-on-scroll opacity-0 mt-2">
                 <MailchimpForm />
               </div>
             </div>

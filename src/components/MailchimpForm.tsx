@@ -55,6 +55,7 @@ const MailchimpForm = () => {
               max-width: 600px;
               margin: 0 auto;
               border-radius: 0.5rem;
+              margin-top: -1rem;
             }
             #mc_embed_signup .button {
               background-color: black;
@@ -73,9 +74,7 @@ const MailchimpForm = () => {
               padding: 0.5rem 1rem;
             }
             #mc_embed_signup h2 {
-              font-weight: 700;
-              margin-bottom: 1rem;
-              font-size: 1.5rem;
+              display: none;
             }
             .mc-field-group {
               padding-bottom: 2%;
@@ -99,7 +98,6 @@ const MailchimpForm = () => {
             target="_blank"
           >
             <div id="mc_embed_signup_scroll">
-              <h2>Be the first to experience a new way of impact investing</h2>
               <div className="indicates-required"><span className="asterisk">*</span> indicates required</div>
               <div className="mc-field-group">
                 <label htmlFor="mce-EMAIL">
