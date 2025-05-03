@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const SimpleMailchimpForm = () => {
   const handleClick = () => {
-    window.open('https://form.typeform.com/to/w0xXAzXL', '_blank');
+    window.open('https://flying-bramble-4ef.notion.site/1e7f4b9db627801da7cbfe871bb5129c?pvs=105', '_blank');
   };
 
   return (
