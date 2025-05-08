@@ -17,6 +17,11 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
+  const handleWaitlistClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open('https://flying-bramble-4ef.notion.site/1e7f4b9db627801da7cbfe871bb5129c?pvs=105', '_blank');
+  };
+
   return (
     <header 
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out py-4 px-6 md:px-10 flex justify-center"
@@ -45,8 +50,9 @@ const Navbar = () => {
             <ul className="flex space-x-8">
               <li>
                 <a 
-                  href="#waitlist" 
-                  className="transition-colors font-inter text-sm font-medium text-[#222222]"
+                  href="#"
+                  onClick={handleWaitlistClick}
+                  className="transition-colors font-inter text-sm font-medium text-[#222222] cursor-pointer"
                 >
                   Join Waitlist
                 </a>
