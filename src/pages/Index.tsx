@@ -1,11 +1,19 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import SimpleMailchimpForm from '@/components/SimpleMailchimpForm';
 
 const Index = () => {
-  // This will help us implement the staggered animation effect
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Handle page load transition
   useEffect(() => {
+    // Set a small timeout to ensure DOM is ready
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+
+    // Set up intersection observer for scroll animations after initial load
     document.querySelectorAll('.animate-on-scroll').forEach((el) => {
       el.classList.add('opacity-0');
     });
@@ -27,7 +35,10 @@ const Index = () => {
       observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    }
   }, []);
 
   return (
@@ -39,20 +50,20 @@ const Index = () => {
           {/* Hero Section */}
           <section className="py-16 md:py-24 relative">
             {/* Hero content */}
-            <div className="text-center space-y-6 max-w-3xl mx-auto relative z-10">
+            <div className={`text-center space-y-6 max-w-3xl mx-auto relative z-10 transition-all duration-1000 ease-in-out ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <div className="space-y-5">
-                <span className="inline-block text-sm font-medium uppercase tracking-wide bg-black text-white px-3 py-1 rounded-full animate-fade-in appear-first">
+                <span className={`inline-block text-sm font-medium uppercase tracking-wide bg-black text-white px-3 py-1 rounded-full transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   Coming Soon
                 </span>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight animate-fade-in appear-second">
+                <h1 className={`text-4xl md:text-5xl lg:text-6xl leading-tight transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   Impact investing in your pocket.
                 </h1>
-                <p className="text-gray-600 text-lg md:text-xl animate-fade-in appear-third">
+                <p className={`text-gray-600 text-lg md:text-xl transition-all duration-700 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   From you, for impact.
                 </p>
               </div>
               
-              <div className="animate-fade-in appear-fourth mt-6 opacity-100 !important" style={{opacity: 1}} id="waitlist">
+              <div className={`mt-6 transition-all duration-700 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} id="waitlist">
                 <SimpleMailchimpForm />
               </div>
             </div>
@@ -114,7 +125,7 @@ const Index = () => {
               <p className="text-gray-600 text-lg animate-on-scroll opacity-0">
                 Be notified when we launch.
               </p>
-              <div className="animate-on-scroll opacity-0 mt-2" style={{opacity: 1}}>
+              <div className="animate-on-scroll opacity-0 mt-2">
                 <SimpleMailchimpForm />
               </div>
             </div>
